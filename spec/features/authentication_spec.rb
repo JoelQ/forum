@@ -41,8 +41,15 @@ feature 'Sign out' do
   end
 end
 
+feature 'Greeting' do
+  scenario 'signed in user' do
+    create_and_sign_in_user
+    page.should have_content "Hello #{@user.email}"
+  end
+end
+
 def create_and_sign_in_user
-  create :user, email: 'test@example.com', password: 'password'
+  @user = create :user, email: 'test@example.com', password: 'password'
   visit '/sign_in'
   fill_in 'Email', with: 'test@example.com'
   fill_in 'Password', with: 'password'
