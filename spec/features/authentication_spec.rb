@@ -46,6 +46,11 @@ feature 'Greeting' do
     create_and_sign_in_user
     page.should have_content "Hello #{@user.email}"
   end
+
+  scenario 'guest user' do
+    visit '/'
+    page.should have_content 'Hello anonymous@example.com'
+  end
 end
 
 def create_and_sign_in_user
