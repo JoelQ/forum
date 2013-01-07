@@ -42,7 +42,7 @@ feature 'Sign out' do
 end
 
 def create_and_sign_in_user
-  FactoryGirl.create :user, email: 'test@example.com', password: 'password'
+  create :user, email: 'test@example.com', password: 'password'
   visit '/sign_in'
   fill_in 'Email', with: 'test@example.com'
   fill_in 'Password', with: 'password'
