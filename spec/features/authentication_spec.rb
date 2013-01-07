@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Sign up' do
   scenario 'new user' do
-    visit '/users/new'
+    visit '/sign_up'
     fill_in 'Email', with: 'me@example.com'
     fill_in 'Password', with: 'password'
     click_button 'Sign up'
@@ -49,14 +49,6 @@ feature 'Greeting' do
 
   scenario 'guest user' do
     visit '/'
-    page.should have_content 'Hello anonymous@example.com'
+    page.should have_content 'Hello Anonymous'
   end
-end
-
-def create_and_sign_in_user
-  @user = create :user, email: 'test@example.com', password: 'password'
-  visit '/sign_in'
-  fill_in 'Email', with: 'test@example.com'
-  fill_in 'Password', with: 'password'
-  click_button 'Sign in'
 end
