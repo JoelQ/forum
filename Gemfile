@@ -23,6 +23,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml-rails'
 gem 'clearance'
 gem 'thin'
 gem 'paperclip'
