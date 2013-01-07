@@ -10,7 +10,10 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    if @user.update_attributes params[:user]
+    @user.username = params[:user][:username] == "" ? nil : params[:user][:username]
+    @user.email = params[:user][:email]
+    @user.password = params[:user][:password] if params[:user][:password].present?
+    if @user.save
       redirect_to @user
     else
       flash.now[:error] = 'An error occured while saving your changes'
