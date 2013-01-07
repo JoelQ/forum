@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 feature 'edit profile' do
-  scenario 'change username' do
+  background do
     create_and_sign_in_user
     click_link 'Profile'
+  end
+
+  scenario 'change username' do
     click_link 'Edit Profile'
     fill_in 'Username', with: 'New Username'
     click_button 'Save'
