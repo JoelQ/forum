@@ -23,10 +23,12 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml-rails'
 gem 'clearance'
 gem 'thin'
 gem 'paperclip'
 gem 'simple_form'
+gem 'pry-rails'
 
 
 group :development, :test do

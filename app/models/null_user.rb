@@ -1,5 +1,5 @@
 class NullUser
-  def email
-    "anonymous@example.com"
+  def username_or_email
+    'Anonymous'
   end
 end
