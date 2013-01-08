@@ -1,0 +1,12 @@
+%h1 Topics
+
+= link_to 'New Topic', new_category_topic_path(@category)
+
+%table
+  %tbody
+    - @topics.each do |topic|
+      %tr
+        %td= link_to topic.name, topic_posts_path(topic)
+        %td= truncate topic.content, length: 75, separator: ' '
+        %td= link_to 'Edit', edit_category_topic_path(@category, topic)
+        %td= link_to 'Delete', category_topic_path(@category, topic), method: :delete, id: "delete-#{topic.id}"
