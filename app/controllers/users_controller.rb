@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    @user.username = params[:user][:username] == "" ? nil : params[:user][:username]
+    @user.username = valid_username_or_nil
     @user.email = params[:user][:email]
     @user.password = params[:user][:password] if params[:user][:password].present?
     if @user.save
@@ -19,5 +19,11 @@ class UsersController < ApplicationController
       flash.now[:error] = 'An error occured while saving your changes'
       render :edit
     end
+  end
+
+  private
+
+  def valid_username_or_nil
+    params[:user][:username] == "" ? nil : params[:user][:username]
   end
 end
