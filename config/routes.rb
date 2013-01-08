@@ -1,4 +1,5 @@
 Forum::Application.routes.draw do
-  root to: 'topics#index'
+  root to: 'categories#index'
   resources :users, only: [:edit, :update, :show]
+  resources :categories
 end
