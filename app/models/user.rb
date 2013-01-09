@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   include Clearance::User
 
   validate :username_not_blank
+  has_many :posts
+  has_many :topics
 
   def username_or_email
     username || email

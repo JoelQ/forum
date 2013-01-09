@@ -7,7 +7,7 @@ feature 'view list of topics' do
     create_and_sign_in_user
     click_link 'Ruby on Rails'
     page.should have_content 'Integration Testing'
-    page.should have_content 'Integration testing (sometimes called Integration and Testing, abbreviated "I&T") is the phase in software testing in which individual software modules ...'
+    page.should have_content 'Integration testing (sometimes called Integration and Testing,...'
   end
 end
 

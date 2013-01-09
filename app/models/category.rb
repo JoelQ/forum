@@ -1,5 +1,6 @@
 class Category < ActiveRecord::Base
-  attr_accessible :name
-  validates_presence_of :name
+  include ActiveModel::ForbiddenAttributesProtection
+
+  validates :name, presence: true
   has_many :topics, dependent: :destroy
 end

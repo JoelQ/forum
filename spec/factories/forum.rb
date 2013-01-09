@@ -4,10 +4,10 @@ FactoryGirl.define do
  end
 
  factory :topic do
-   name 'Integration Testing'
-   content 'A vital part of the TDD experience ... blah blah blah'
    category
    user
+   name 'Integration Testing'
+   content 'A vital part of the TDD experience ... blah blah blah'
  end
 
  factory :post do

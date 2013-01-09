@@ -15,7 +15,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new params[:post].merge({topic_id: params[:topic_id], user_id: current_user.id})
+    @post = current_user.posts.new post_params.merge(topic_id: params[:topic_id])
     if @post.save
       redirect_to topic_posts_path(params[:topic_id])
     else
@@ -34,8 +34,14 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find params[:id]
-    @post.destroy
+    post = Post.find params[:id]
+    post.destroy
     redirect_to topic_posts_path(params[:topic_id])
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:content)
   end
 end

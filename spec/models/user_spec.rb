@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe User do
+  it { should have_many(:posts) }
+  it { should have_many(:topics) }
+
   it 'allows nil usernames' do
     user = create(:user)
     user.username = nil

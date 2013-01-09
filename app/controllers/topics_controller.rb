@@ -16,9 +16,10 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new params[:topic].merge({category_id: params[:category_id]})
+    @category = Category.find params[:category_id]
+    @topic = @category.topics.new topic_params
     if @topic.save
-      redirect_to category_topics_path(params[:category_id])
+      redirect_to category_topics_path(@category)
     else
       render :new
     end
@@ -26,7 +27,7 @@ class TopicsController < ApplicationController
 
   def update
     @topic = Topic.find params[:id]
-    if @topic.update_attributes params[:topic]
+    if @topic.update_attributes topic_params
       redirect_to topic_posts_path(@topic)
     else
       render :edit
@@ -34,8 +35,14 @@ class TopicsController < ApplicationController
   end
 
   def destroy
-    @topic = Topic.find params[:id]
-    @topic.destroy
+    topic = Topic.find params[:id]
+    topic.destroy
     redirect_to category_topics_path(params[:category_id])
+  end
+
+  private
+
+  def topic_params
+    params.require(:topic).permit(:name, :content)
   end
 end
