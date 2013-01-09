@@ -1,3 +1,13 @@
 %div
   %h1= @topic.name
-  %p= @topic.content
+  = link_to 'Post Reply', new_topic_post_path(@topic)
+  %div
+    %h2= @topic.user.username_or_email
+    %p= @topic.content
+
+  - @posts.each do |post|
+    %div
+      %h2= post.user.username_or_email
+      = link_to 'Edit', edit_topic_post_path(@topic, post)
+      = link_to 'Delete', topic_post_path(@topic, post), method: :delete
+      %p= post.content

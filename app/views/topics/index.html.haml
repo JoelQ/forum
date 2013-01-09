@@ -6,7 +6,7 @@
   %tbody
     - @topics.each do |topic|
       %tr
-        %td= link_to topic.name, category_topic_path(@category, topic)
+        %td= link_to topic.name, topic_posts_path(topic)
         %td= topic.truncate_content(20)
         %td= link_to 'Edit', edit_category_topic_path(@category, topic)
         %td= link_to 'Delete', category_topic_path(@category, topic), method: :delete
