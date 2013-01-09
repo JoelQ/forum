@@ -1,0 +1,11 @@
+%h1 Topics
+
+= link_to 'New Topic', new_category_topic_path(@category)
+
+%table
+  %tbody
+    - @topics.each do |topic|
+      %tr
+        %td= link_to topic.name, category_topic_path(@category, topic)
+        %td= link_to 'Edit', edit_category_topic_path(@category, topic)
+        %td= link_to 'Delete', category_topic_path(@category, topic), method: :delete
