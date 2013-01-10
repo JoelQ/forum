@@ -5,9 +5,17 @@ feature 'Post on a topic' do
     set_up_topic
     create_and_sign_in_user
     navigate_to_topic @category.name, @topic.name
-    click_link 'Post Reply'
-    fill_in 'Content', with: 'Totally love it!!!'
-    click_button 'Create Post'
-    page.should have_content 'Totally love it!!!'
+    post_reply 'Totally love it!!!'
+    reply_is_displayed 'Totally love it!!!'
   end
+end
+
+def post_reply(content)
+  click_link 'Post Reply'
+  fill_in 'Content', with: content
+  click_button 'Create Post'
+end
+
+def reply_is_displayed(content)
+  page.should have_content 'Totally love it!!!'
 end

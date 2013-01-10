@@ -5,8 +5,16 @@ feature 'Deleting a topic' do
     category = create :category, name: 'Ruby on Rails'
     create :topic, name: 'Integration Testing', category: category
     create_and_sign_in_user
-    click_link 'Ruby on Rails'
-    click_link 'Delete'
-    page.should_not have_content 'Integration Testing'
+    delete_topic
+    topic_is_not_displayed 'Integration Testing'
   end
+end
+
+def delete_topic
+  click_link 'Ruby on Rails'
+  click_link 'Delete'
+end
+
+def topic_is_not_displayed(topic_name)
+  page.should_not have_content topic_name
 end
