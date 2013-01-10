@@ -5,14 +5,14 @@ feature 'Delete a post' do
     set_up_topic
     @post = create :post, content: 'I totally agree. Good job!', topic: @topic
     create_and_sign_in_user
-    delete_post
+    navigate_to_topic @category.name, @topic.name
+    delete_post @post.id
     post_is_not_displayed
   end
 end
 
-def delete_post
-  navigate_to_topic @category.name, @topic.name
-  click_link 'Delete'
+def delete_post(post_id)
+  click_link "delete-#{post_id}"
 end
 
 def post_is_not_displayed

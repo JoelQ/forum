@@ -9,5 +9,5 @@
     %div
       %h2= post.user.username_or_email
       = link_to 'Edit', edit_topic_post_path(@topic, post)
-      = link_to 'Delete', topic_post_path(@topic, post), method: :delete
+      = link_to 'Delete', topic_post_path(@topic, post), method: :delete, id: "delete-#{post.id}"
       %p= post.content

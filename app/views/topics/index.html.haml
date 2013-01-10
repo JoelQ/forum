@@ -9,4 +9,4 @@
         %td= link_to topic.name, topic_posts_path(topic)
         %td= truncate topic.content, length: 75, separator: ' '
         %td= link_to 'Edit', edit_category_topic_path(@category, topic)
-        %td= link_to 'Delete', category_topic_path(@category, topic), method: :delete
+        %td= link_to 'Delete', category_topic_path(@category, topic), method: :delete, id: "delete-#{topic.id}"
