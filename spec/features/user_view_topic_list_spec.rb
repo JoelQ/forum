@@ -7,7 +7,7 @@ feature 'View a list of topics' do
   end
 
   scenario 'as a user' do
-    create_and_sign_in_user
+    create_and_sign_in_user_with_roles('user')
     display_topic_title_and_content
   end
 end

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 feature 'Creating a topic' do
-  scenario 'as a user' do
+  scenario 'as an admin' do
     create :category, name: 'Ruby on Rails'
-    create_and_sign_in_user_with_roles('user')
+    create_and_sign_in_user_with_roles('admin')
     create_new_topic_named 'Integration Testing'
     view_topic_in_topic_list 'Integration Testing'
   end
