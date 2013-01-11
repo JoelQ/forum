@@ -1,6 +1,6 @@
 Forum::Application.routes.draw do
   root to: 'categories#index'
-  resources :users, only: [:edit, :update, :show]
+  resources :users, only: [:create, :edit, :update, :show]
   resources :categories, only: [:index, :new, :edit, :create, :update, :destroy] do
     resources :topics
   end

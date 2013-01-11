@@ -8,7 +8,7 @@ feature 'View responses to a topic' do
   end
 
   scenario 'as a user' do
-    create_and_sign_in_user
+    create_and_sign_in_user_with_roles('user')
     navigate_to_topic @category.name, @topic.name
     content_and_authors_are_displayed
   end
@@ -18,7 +18,7 @@ def content_and_authors_are_displayed
   page.should have_content @topic.content
   page.should have_content @post1.content
   page.should have_content @post2.content
-  page.should have_content @topic.user.username_or_email
-  page.should have_content @post1.user.username_or_email
-  page.should have_content @post2.user.username_or_email
+  page.should have_content @topic.user.username
+  page.should have_content @post1.user.username
+  page.should have_content @post2.user.username
 end

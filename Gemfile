@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '1.9.3'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -30,6 +30,8 @@ gem 'thin'
 gem 'paperclip'
 gem 'simple_form'
 gem 'pry-rails'
+gem 'cancan'
+gem 'activerecord-postgres-array'
 
 
 group :development, :test do

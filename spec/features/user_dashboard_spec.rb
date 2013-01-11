@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'edit profile' do
   background do
-    create_and_sign_in_user
+    create_and_sign_in_user_with_roles('user')
     click_link 'Profile'
     click_link 'Edit Profile'
   end
@@ -26,7 +26,7 @@ feature 'edit profile' do
     fill_in 'Email', with: @user.email
     fill_in 'Password', with: 'another_password'
     click_button 'Sign in'
-    page.should have_content @user.email
+    page.should have_content @user.username
   end
 
 end

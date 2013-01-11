@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  authorize_resource
+
   def index
     @topic = Topic.find params[:topic_id]
     @posts = @topic.posts

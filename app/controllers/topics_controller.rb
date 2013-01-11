@@ -1,4 +1,5 @@
 class TopicsController < ApplicationController
+  authorize_resource
 
   def index
     @category = Category.find params[:category_id]
@@ -17,7 +18,7 @@ class TopicsController < ApplicationController
 
   def create
     @category = Category.find params[:category_id]
-    @topic = @category.topics.new topic_params
+    @topic = @category.topics.new topic_params.merge(user_id: current_user.id)
     if @topic.save
       redirect_to category_topics_path(@category)
     else

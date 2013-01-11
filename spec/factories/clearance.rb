@@ -6,7 +6,9 @@ FactoryGirl.define do
 
   factory :user do
     email
+    username 'user@example.com'
     password "password"
+    roles ['user']
   end
 
 end
