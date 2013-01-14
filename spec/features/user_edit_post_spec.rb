@@ -13,10 +13,14 @@ feature 'Edit a post' do
   scenario 'other user\'s post as a user' do
     set_up_topic
     user = create_and_sign_in_user_with_roles('user')
-    @post = create :post, content: 'I totally agree. Good job!', topic: @topic
-    navigate_to_topic @category.name, @topic.name
+    navigate_to_other_users_post_in @category.name
     edit_link_is_not_shown_for @post
   end
+end
+
+def navigate_to_other_users_post_in(category_name)
+  post = create :post, content: 'I totally agree. Good job!', topic: @topic
+  navigate_to_topic category_name, @topic.name
 end
 
 def edit_link_is_not_shown_for(post)
