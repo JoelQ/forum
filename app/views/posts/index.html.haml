@@ -8,6 +8,6 @@
   - @posts.each do |post|
     %div
       %h2= post.user.username
-      = link_to 'Edit', edit_topic_post_path(@topic, post)
-      = link_to 'Delete', topic_post_path(@topic, post), method: :delete, id: "delete-#{post.id}"
+      = link_to 'Edit', edit_topic_post_path(@topic, post), id: "edit-#{post.id}" if can? :edit, post
+      = link_to 'Delete', topic_post_path(@topic, post), method: :delete, id: "delete-#{post.id}" if can? :delete, Post
       %p= post.content

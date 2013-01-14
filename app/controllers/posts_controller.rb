@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  load_resource only: [:edit, :update, :destroy]
   authorize_resource
 
   def index
@@ -13,7 +14,6 @@ class PostsController < ApplicationController
 
   def edit
     @topic = Topic.find params[:topic_id]
-    @post = Post.find params[:id]
   end
 
   def create
@@ -26,7 +26,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find params[:id]
     @post.content = params[:post][:content]
     if @post.save
       redirect_to topic_posts_path(params[:topic_id])
@@ -36,8 +35,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    post = Post.find params[:id]
-    post.destroy
+    @post.destroy
     redirect_to topic_posts_path(params[:topic_id])
   end
 
