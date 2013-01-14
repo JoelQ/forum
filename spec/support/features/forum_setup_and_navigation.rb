@@ -8,4 +8,11 @@ module Features
     click_link category_name
     click_link topic_name
   end
+
+  def create_and_navigate_to_topic
+    category = create :category
+    topic = create :topic, category: category
+    visit categories_path
+    navigate_to_topic category.name, topic.name
+  end
 end
