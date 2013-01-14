@@ -6,5 +6,5 @@
     - @categories.each do |category|
       %tr
         %td= link_to category.name, category_topics_path(category)
-        %td= link_to "Edit", edit_category_path(category) if can? :update, Category
-        %td= link_to 'Delete', category, method: :delete, id: "delete-#{category.name}" if can? :destroy, Category
+        %td= authorized_only_edit_link edit_category_path(category), category
+        %td= authorized_only_delete_link category_path(category), category

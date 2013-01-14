@@ -8,5 +8,5 @@
       %tr
         %td= link_to topic.name, topic_posts_path(topic)
         %td= truncate topic.content, length: 75, separator: ' '
-        %td= link_to 'Edit', edit_category_topic_path(@category, topic), id: "edit-#{topic.id}" if can? :edit, topic
-        %td= link_to 'Delete', category_topic_path(@category, topic), method: :delete, id: "delete-#{topic.id}" if can? :destroy, topic
+        %td= authorized_only_edit_link edit_category_topic_path(@category, topic), topic
+        %td= authorized_only_delete_link category_topic_path(@category, topic), topic
