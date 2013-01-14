@@ -19,7 +19,7 @@ feature 'Edit a post' do
 end
 
 def navigate_to_other_users_post_in(category_name)
-  post = create :post, content: 'I totally agree. Good job!', topic: @topic
+  @post = create :post, content: 'I totally agree. Good job!', topic: @topic
   navigate_to_topic category_name, @topic.name
 end
 
