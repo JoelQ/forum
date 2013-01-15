@@ -7,21 +7,21 @@ class MediaParser
     @links = URI.extract @text
   end
 
-  def parse
+  def parse_links
     @links.each do |link|
-      puts(media = convert_to_media(link))
+      media = convert_to_media link
       embed link, media
     end
     @text
   end
 
   def convert_to_media(link)
-    if URI.split(link)[5].end_with? "png"
-      "<img src='#{link}' />"
+    if URI.split(link)[5].end_with? 'png', 'gif', 'jpeg'
+      "<img src=\"#{link}\" />"
     end
   end
 
   def embed(link, media)
-    @text.gsub!(/link/, media)
+    @text.gsub!(/#{link}/, media)
   end
 end
