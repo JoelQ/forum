@@ -10,4 +10,4 @@
       %h2= post.user.username
       = authorized_only_edit_link edit_topic_post_path(@topic, post), post
       = authorized_only_delete_link topic_post_path(@topic, post), post
-      %p= post.content
+      %p= post.processed_content.html_safe
