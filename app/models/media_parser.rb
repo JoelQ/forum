@@ -1,6 +1,7 @@
 require 'uri'
 
 class MediaParser
+  EMBEDDERS = [ImageEmbedder, YouTubeEmbedder, HyperlinkEmbedder]
 
   def initialize(text)
     @text = text
@@ -9,28 +10,25 @@ class MediaParser
 
   def parse_links
     @links.each do |link|
-      media = convert_to_media(link)
-      embed link, media
+      embedable_media = convert_to_media(link)
+      replace_url_with_html_embed link, embedable_media
     end
     @parsed_text
   end
 
   def convert_to_media(link)
-    if URI.split(link)[5].end_with? 'png', 'gif', 'jpeg'
-      "<img src=\"#{link}\" />"
-    elsif URI.split(link)[2].include?("youtube") && URI.split(link)[7] && URI.split(link)[7].include?('v=')
-      video_id = URI.split(link)[7][2..-1]
-      "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
-    elsif URI.split(link)[2].include? "youtu.be"
-      video_id = URI.split(link)[5].gsub('/', '')
-      "<iframe width=\"560\" height=\"315\" src=\"http://www.youtube.com/embed/#{video_id}\" frameborder=\"0\" allowfullscreen></iframe>"
-    else
-      "<a href=\"#{link}\">#{link}</a>"
+    EMBEDDERS.each do |embedder_class|
+      embedder = embedder_class.new(link)
+      if embedder.can_process_url?
+        return embedder.convert_to_media_markup
+      end
     end
   end
 
-  def embed(link, media)
+  private
+
+  def replace_url_with_html_embed(link, html_snippet)
     source = @parsed_text || @text
-    @parsed_text = source.gsub(link, media)
+    @parsed_text = source.gsub(link, html_snippet)
   end
 end

@@ -1,3 +1,6 @@
+require_relative '../../app/models/image_embedder'
+require_relative '../../app/models/youtube_embedder'
+require_relative '../../app/models/hyperlink_embedder'
 require_relative '../../app/models/media_parser'
 
 class Content
