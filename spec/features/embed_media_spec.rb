@@ -13,7 +13,7 @@ feature 'Embed media' do
     create_and_sign_in_user_with_roles('user')
     create_and_navigate_to_topic
     post_link_in_response_to_topic('http://www.youtube.com/watch?v=NSWOvw5N4nUs')
-    link_is_displayed_on_page('http://www.youtube.com/watch?v=NSWOvw5N4nU')
+    youtube_video_is_embedded_on_page('NSWOvw5N4nUs')
   end
 
   scenario 'other link' do
@@ -36,4 +36,8 @@ end
 
 def link_is_displayed_on_page(url)
   page.should have_css("a[href='#{url}']")
+end
+
+def youtube_video_is_embedded_on_page(video_id)
+  page.should have_css("iframe[src='http://www.youtube.com/embed/#{video_id}']")
 end

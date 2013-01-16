@@ -1,6 +1,6 @@
 require 'uri'
 
-class HyperlinkEmbedder
+class HyperlinkResource
 
   def initialize(url)
     @url = url
@@ -10,7 +10,7 @@ class HyperlinkEmbedder
     true
   end
 
-  def convert_to_media_markup
+  def to_html
     "<a href=\"#{@url}\">#{@url}</a>"
   end
 end
