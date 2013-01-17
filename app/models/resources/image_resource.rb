@@ -9,7 +9,7 @@ class ImageResource
   end
 
   def can_process_url?
-    @url.path.end_with? 'png', 'gif', 'jpeg'
+    @url.path.end_with? 'png', 'gif', 'jpg'
   end
 
   def to_html

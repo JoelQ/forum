@@ -14,7 +14,7 @@ class MediaParser
   def initialize(text)
     @text = text.dup
     @links = URI.extract @text
-    @resources = self.class.resources
+    @resources = self.class.resources << HyperlinkResource
   end
 
   def parse_links
@@ -26,19 +26,20 @@ class MediaParser
   end
 
   def convert_to_media(link)
-    @resources.each do |resource_class|
-      resource = resource_class.new(link)
-      if resource.can_process_url?
-        return resource.to_html
-      end
-    end
-    HyperlinkResource.new(link).to_html
+    resource_class = find_resource_for(link)
+    resource_class.new(link).to_html
   end
 
   private
 
   def replace_url_with_html_embed(link, html_snippet)
     @text.gsub!(link, html_snippet)
+  end
+
+  def find_resource_for(link)
+    @resources.find do |resource_class|
+      resource_class.new(link).can_process_url?
+    end
   end
 
   Dir[File.expand_path("app/models/resources/*.rb")].each { |file| require file }

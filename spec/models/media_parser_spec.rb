@@ -1,72 +1,44 @@
 require_relative '../../app/models/media_parser'
+require_relative '../../app/models/hyperlink_resource'
 
 class Content
   attr_accessor :text
 end
 
+class TestResource
+  def initialize(text)
+  end
+
+  def can_process_url?
+    true
+  end
+
+  def to_html
+    'some_html_embed_code'
+  end
+end
+
 describe MediaParser do
-  describe 'image links' do
-    context 'when PNG' do
-      it 'converts the link to HTMl image tag' do
-        text = 'Check out this awesome pic! http://www.image.com/cat_pic.png . I think you will really enjoy'
-        parser = MediaParser.new(text)
-        parser.parse_links.should eq 'Check out this awesome pic! <img src="http://www.image.com/cat_pic.png" /> . I think you will really enjoy'
-      end
-    end
-
-    context 'when GIF' do
-      it 'converts the link to HTMl image tag' do
-        text = 'Check out this awesome pic! http://www.image.com/cat_pic.gif . I think you will really enjoy'
-        parser = MediaParser.new(text)
-        parser.parse_links.should eq 'Check out this awesome pic! <img src="http://www.image.com/cat_pic.gif" /> . I think you will really enjoy'
-      end
-    end
-
-    context 'when JPEG' do
-      it 'converts the link to HTMl image tag' do
-        text = 'Check out this awesome pic! http://www.image.com/cat_pic.jpeg . I think you will really enjoy'
-        parser = MediaParser.new(text)
-        parser.parse_links.should eq 'Check out this awesome pic! <img src="http://www.image.com/cat_pic.jpeg" /> . I think you will really enjoy'
-      end
-    end
+  it 'replaces links in a block of text with embedded html' do
+    MediaParser.stub(:resources).and_return([TestResource])
+    text = 'Check out this awesome vid! http://youtu.be/NSWOvw5N4nU . I think you will really enjoy'
+    parser = MediaParser.new(text)
+    parser.parse_links.should eq 'Check out this awesome vid! some_html_embed_code . I think you will really enjoy'
   end
 
-  describe 'YouTube links' do
-    context 'when standard YouTube url' do
-      it 'embeds the video using youtube\'s embed code' do
-        text = 'Check out this awesome vid! http://www.youtube.com/watch?v=NSWOvw5N4nU . I think you will really enjoy'
-        parser = MediaParser.new(text)
-        parser.parse_links.should eq 'Check out this awesome vid! <iframe width="560" height="315" src="http://www.youtube.com/embed/NSWOvw5N4nU" frameborder="0" allowfullscreen></iframe> . I think you will really enjoy'
-      end
-    end
-
-    context 'when shorter share url' do
-      it 'embeds the video using youtube\'s embed code' do
-        text = 'Check out this awesome vid! http://youtu.be/NSWOvw5N4nU . I think you will really enjoy'
-        parser = MediaParser.new(text)
-        parser.parse_links.should eq 'Check out this awesome vid! <iframe width="560" height="315" src="http://www.youtube.com/embed/NSWOvw5N4nU" frameborder="0" allowfullscreen></iframe> . I think you will really enjoy'
-      end
-    end
+  it 'makes a simple hyperlink if not resource is found' do
+    MediaParser.stub(:resources).and_return([])
+    parser = MediaParser.new('this is a link http://google.com')
+    parser.stub(:replace_url_with_html_embed)
+    HyperlinkResource.any_instance.should_receive(:to_html)
+    parser.parse_links
   end
 
-  describe 'other types of links' do
-    context 'when contains a link to something else' do
-      it 'converts the link to HTMl anchor tag' do
-        text = 'Check out this awesome pic! http://www.image.com/ . I think you will really enjoy'
-        parser = MediaParser.new(text)
-        parser.parse_links.should eq 'Check out this awesome pic! <a href="http://www.image.com/">http://www.image.com/</a> . I think you will really enjoy'
-      end
-    end
-
-
-    context 'when parsing content of another object' do
-      it 'does not modify the content of that object' do
-        object = Content.new
-        object.text = 'Check out this awesome pic! http://www.image.com/ . I think you will really enjoy'
-        parser = MediaParser.new(object.text)
-        parser.parse_links.should eq 'Check out this awesome pic! <a href="http://www.image.com/">http://www.image.com/</a> . I think you will really enjoy'
-        object.text.should eq 'Check out this awesome pic! http://www.image.com/ . I think you will really enjoy'
-      end
-    end
+  it 'does not modify the content of other objects' do
+    object = Content.new
+    object.text = 'Check out this awesome pic! http://www.image.com/ . I think you will really enjoy'
+    parser = MediaParser.new(object.text)
+    parser.parse_links.should eq 'Check out this awesome pic! <a href="http://www.image.com/">http://www.image.com/</a> . I think you will really enjoy'
+    object.text.should eq 'Check out this awesome pic! http://www.image.com/ . I think you will really enjoy'
   end
 end
