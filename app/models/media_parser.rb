@@ -13,12 +13,11 @@ class MediaParser
 
   def initialize(text)
     @text = text.dup
-    @links = URI.extract @text
     @resources = self.class.resources << HyperlinkResource
   end
 
   def parse_links
-    @links.each do |link|
+    links.each do |link|
       html_snippet = convert_to_media(link)
       replace_url_with_html_embed link, html_snippet
     end
@@ -31,6 +30,10 @@ class MediaParser
   end
 
   private
+
+  def links
+    @links ||= URI.extract @text
+  end
 
   def replace_url_with_html_embed(link, html_snippet)
     @text.gsub!(link, html_snippet)
