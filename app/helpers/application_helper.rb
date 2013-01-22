@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def authorized_only_edit_link(path, resource)
     if can? :update, resource
-      link_to 'Edit', path
+      link_to t(:edit), path
     end
   end
 
