@@ -1,0 +1,10 @@
+fr:
+  hello: 'Bonjour'
+  profile: 'Profil'
+  log_out: 'Deconnexion'
+  topics: 'Sujets'
+  category: 'Catégorie'
+
+  activerecord:
+    models:
+      topic: 'Sujet'

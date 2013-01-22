@@ -1,5 +1,5 @@
 %h1 Profile
-= link_to 'Edit Profile', edit_user_path(current_user)
+= link_to t('helpers.submit.update', model: t(:profile)), edit_user_path(current_user)
 %ul
   %li="Username: #{@user.username}"
   %li="Email: #{@user.email}"

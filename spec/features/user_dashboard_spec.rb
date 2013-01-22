@@ -4,7 +4,7 @@ feature 'edit profile' do
   background do
     create_and_sign_in_user_with_roles('user')
     click_link 'Profile'
-    click_link 'Edit Profile'
+    click_link 'Update Profile'
   end
 
   scenario 'change username' do

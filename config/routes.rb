@@ -1,10 +1,13 @@
 Forum::Application.routes.draw do
-  root to: 'categories#index'
-  resources :users, only: [:create, :edit, :update, :show]
-  resources :categories, only: [:index, :new, :edit, :create, :update, :destroy] do
-    resources :topics
+  scope '(:locale)', locale: /en|fr/ do
+    resources :users, only: [:create, :edit, :update, :show]
+    resources :categories, only: [:index, :new, :edit, :create, :update, :destroy] do
+      resources :topics
+    end
+    resources :topics, only: [] do
+      resources :posts
+    end
   end
-  resources :topics, only: [] do
-    resources :posts
-  end
+
+  match '/(:locale)' => 'categories#index', as: :root, locale: /en|fr/
 end
