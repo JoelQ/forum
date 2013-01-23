@@ -14,6 +14,7 @@ class PostsController < ApplicationController
 
   def edit
     @topic = Topic.find params[:topic_id]
+    render layout: false
   end
 
   def create
