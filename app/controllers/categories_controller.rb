@@ -2,7 +2,6 @@ class CategoriesController < ApplicationController
   authorize_resource
 
   def index
-    # raise params.to_yaml
     @categories = Category.all
   end
 
