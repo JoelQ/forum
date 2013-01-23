@@ -1,8 +1,8 @@
 module ApplicationHelper
 
-  def authorized_only_edit_link(path, resource)
+  def authorized_only_edit_link(path, resource, options={})
     if can? :update, resource
-      link_to t('helpers.submit.update', model: resource.class.model_name.human), path
+      link_to t('helpers.submit.update', model: resource.class.model_name.human), path, options
     end
   end
 
