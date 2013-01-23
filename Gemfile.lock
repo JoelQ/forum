@@ -94,6 +94,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    media_embedder (0.0.2)
     metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.19)
@@ -215,6 +216,7 @@ DEPENDENCIES
   haml-rails
   jquery-rails
   launchy
+  media_embedder
   paperclip
   pg
   pry-rails

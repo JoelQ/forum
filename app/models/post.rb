@@ -9,7 +9,7 @@ class Post < ActiveRecord::Base
   private
 
   def parse_content
-    parser = MediaParser.new(content)
+    parser = MediaEmbedder::Parser.new(content)
     self.processed_content = parser.parse_links
   end
 end

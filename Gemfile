@@ -33,6 +33,7 @@ gem 'simple_form'
 gem 'pry-rails'
 gem 'cancan'
 gem 'activerecord-postgres-array'
+gem 'media_embedder'
 
 
 group :development, :test do
