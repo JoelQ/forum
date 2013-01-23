@@ -11,7 +11,7 @@ end
 
 def create_new_topic_named(topic_name)
   click_link 'Ruby on Rails'
-  click_link 'New Topic'
+  click_link 'Create Topic'
   fill_in 'Name', with: topic_name
   fill_in 'Content', with: 'Integration Testing is great... blah blah blah'
   click_button 'Create Topic'

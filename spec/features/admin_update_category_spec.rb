@@ -10,7 +10,7 @@ feature 'Editing a category' do
 end
 
 def change_category_to(name)
-  click_link 'Edit'
+  click_link 'Update Category'
   fill_in 'Name', with: name
   click_button 'Update Category'
 end

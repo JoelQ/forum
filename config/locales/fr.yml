@@ -3,4 +3,8 @@ fr:
   profile: 'Profil'
   log_out: 'Deconnexion'
   topics: 'Sujets'
-  edit: 'Editer'
+  category: 'Catégorie'
+
+  activerecord:
+    models:
+      topic: 'Sujet'

@@ -28,7 +28,7 @@ def edit_link_is_not_shown_for(post)
 end
 
 def change_post_content_to(content)
-  click_link 'Edit'
+  click_link 'Update Post'
   fill_in 'Content', with: content
   click_button 'Update Post'
 end

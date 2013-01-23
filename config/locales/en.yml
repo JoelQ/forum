@@ -6,4 +6,7 @@ en:
   profile: 'Profile'
   log_out: 'Log out'
   topics: 'Topics'
-  edit: 'edit'
+  category: 'Category'
+  activerecord:
+    models:
+      topic: 'Topic'

@@ -24,7 +24,7 @@ end
 
 def change_topic_to(name)
   click_link 'Ruby on Rails'
-  click_link 'Edit'
+  click_link 'Update Topic'
   fill_in 'Name', with: name
   click_button 'Update Topic'
 end

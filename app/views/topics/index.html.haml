@@ -1,6 +1,6 @@
 %h1= t(:topics)
 
-= link_to 'New Topic', new_category_topic_path(@category)
+= link_to t('helpers.submit.create', model: Topic.model_name.human), new_category_topic_path(@category)
 
 %table
   %tbody
