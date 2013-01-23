@@ -1,9 +1,7 @@
-You look great in Suspenders
-============================
+# Forum
+This is a learning project (aka 'Breakable Toy') for the Apprentice.io program at Thoughtbot.
 
-Use the following guides for getting things done, programming well, and
-programming in style.
+The forum has the following features:
 
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+* Embedded media (links to images, youtube, etc are parsed and embedded into the page)
+* Internationalization, the forum supports both english and french
