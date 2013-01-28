@@ -34,6 +34,7 @@ gem 'pry-rails'
 gem 'cancan'
 gem 'activerecord-postgres-array'
 gem 'media_embedder'
+gem 'jasminerice'
 
 
 group :development, :test do
