@@ -9,5 +9,9 @@ Forum::Application.routes.draw do
     end
   end
 
+  namespace 'api' do
+    resources 'posts', only: :index
+  end
+
   match '/(:locale)' => 'categories#index', as: :root, locale: /en|fr/
 end

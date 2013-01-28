@@ -1,0 +1,2 @@
+<h5><%= @author %></h5>
+<p><%= @content %></p>
