@@ -15,6 +15,6 @@ end
 
 def post_feed_updates_on_post_creation
   post = create(:post)
-  sleep ENV['POLL_INTERVAL'].to_i/1000.0
+  sleep ENV['POLL_INTERVAL_IN_MS'].to_i/1000.0
   find("#posts").should have_content(post.user.username)
 end
