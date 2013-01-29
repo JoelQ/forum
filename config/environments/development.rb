@@ -35,5 +35,5 @@ Forum::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 
-  ENV['POLL_INTERVAL'] = '10000'
+  ENV['POLL_INTERVAL_IN_MS'] = '10000'
 end

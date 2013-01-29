@@ -1,2 +1,2 @@
-<h5><%= @author %></h5>
+<h5><%= @author_name %></h5>
 <p><%= @content %></p>

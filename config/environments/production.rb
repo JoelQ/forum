@@ -65,5 +65,5 @@ Forum::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
 
-  ENV['POLL_INTERVAL'] = '10000'
+  ENV['POLL_INTERVAL_IN_MS'] = '10000'
 end
