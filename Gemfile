@@ -34,6 +34,8 @@ gem 'pry-rails'
 gem 'cancan'
 gem 'activerecord-postgres-array'
 gem 'media_embedder'
+gem 'jasminerice'
+gem 'backbone-on-rails'
 
 
 group :development, :test do
@@ -42,6 +44,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'factory_girl_rails'
   gem 'bourne'
   gem 'database_cleaner'

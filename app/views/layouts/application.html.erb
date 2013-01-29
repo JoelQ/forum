@@ -19,5 +19,11 @@
 
 <%= yield %>
 
+  <% if signed_in? %>
+    <div id="posts" >
+    </div>
+    <script>Forum.pollInterval = <%= ENV['POLL_INTERVAL_IN_MS'] %></script>
+  <% end %>
+
 </body>
 </html>
