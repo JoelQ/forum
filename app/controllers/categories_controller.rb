@@ -15,6 +15,7 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new category_params
+    authorize! :create, @category
     if @category.save
       redirect_to categories_path
     else
