@@ -3,6 +3,8 @@ require 'spec_helper'
 describe User do
   it { should have_many(:posts) }
   it { should have_many(:topics) }
+  it { should have_many(:category_roles) }
+  it { should have_many(:categories).through(:category_roles) }
   it { should validate_presence_of(:username) }
 
   context 'check if it has the specified role' do

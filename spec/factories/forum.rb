@@ -15,4 +15,11 @@ FactoryGirl.define do
    topic
    content 'I totally agree. Nice job!'
  end
+
+ factory :category_role do
+   user
+   category
+   banned false
+   moderator false
+ end
 end

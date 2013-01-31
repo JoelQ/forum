@@ -7,7 +7,10 @@ class Ability
     end
 
     if user.has_role?(:user)
-      can :read, [Category, Topic, Post]
+      can :read, Category do |category|
+        !CategoryRole.category_banned_for_user?(category, user)
+      end
+      can :read, [Topic, Post]
       can :create, [Topic, Post]
       can :update, [Topic, Post], user_id: user.id
     end
