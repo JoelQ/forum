@@ -1,13 +1,13 @@
-require 'browser_logger'
+require 'log_tail'
 require 'rack/test'
 
 include Rack::Test::Methods
 
 def app
-  @app ||= BrowserLogger.new('development')
+  @app ||= LogTail.new('development')
 end
 
-describe BrowserLogger do
+describe LogTail do
   it 'displays the lastest logs' do
     log = 'content from the log file'
     app.stub(:`).and_return(log)
