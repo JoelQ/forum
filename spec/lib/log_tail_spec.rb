@@ -1,13 +1,10 @@
-require 'log_tail'
-require 'rack/test'
-
-include Rack::Test::Methods
-
-def app
-  @app ||= LogTail.new('development')
-end
+require 'spec_helper'
 
 describe LogTail do
+  def app
+    @app ||= LogTail.new('development')
+  end
+
   it 'displays the lastest logs' do
     log = 'content from the log file'
     app.stub(:`).and_return(log)

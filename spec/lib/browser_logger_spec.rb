@@ -1,8 +1,4 @@
-require 'log_tail'
-require 'rack/test'
-require 'browser_logger'
-
-include Rack::Test::Methods
+require 'spec_helper'
 
 describe BrowserLogger do
   def app
