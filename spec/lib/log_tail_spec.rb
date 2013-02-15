@@ -12,6 +12,6 @@ describe LogTail do
     log = 'content from the log file'
     app.stub(:`).and_return(log)
     get '/'
-    last_response.body.should eq log
+    last_response.body.should eq "<pre>#{log}</pre>"
   end
 end
