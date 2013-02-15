@@ -2,8 +2,9 @@ require 'spec_helper'
 
 feature 'Display latest posts', js: true do
   scenario 'when no posts' do
+    create(:category, name: 'Testing')
     create_and_sign_in_user_with_roles('user')
-    visit categories_path
+    click_link 'Testing'
     post_feed_is_empty
     post_feed_updates_on_post_creation
   end

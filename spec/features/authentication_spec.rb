@@ -2,7 +2,8 @@ require 'spec_helper'
 
 feature 'Sign up' do
   scenario 'new user' do
-    visit '/sign_up'
+    visit '/'
+    click_link 'Sign up'
     fill_in 'Email', with: 'me@example.com'
     fill_in 'Password', with: 'password'
     click_button 'Sign up'
@@ -24,7 +25,8 @@ feature 'Sign in' do
   end
 
   scenario 'new user' do
-    visit '/sign_in'
+    visit '/'
+    click_link 'Sign in'
     fill_in 'Email', with: 'new_user@example.com'
     fill_in 'Password', with: 'new_password'
     click_button 'Sign in'
