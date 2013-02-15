@@ -6,6 +6,9 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "sprockets/railtie"
+require File.expand_path('../../lib/browser_logger', __FILE__)
+require File.expand_path('../../lib/log_tail', __FILE__)
+
 # require "rails/test_unit/railtie"
 
 if defined?(Bundler)
@@ -64,5 +67,7 @@ module Forum
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.middleware.use BrowserLogger
   end
 end
