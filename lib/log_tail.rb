@@ -1,5 +1,4 @@
 class LogTail
-
   def initialize(environment)
     @environment = environment
   end
