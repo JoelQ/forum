@@ -10,12 +10,12 @@ describe BrowserLogger do
   end
 
   it 'sends the request to the tail when url is /browser_logs' do
-    LogTail.any_instance.should_receive(:call).and_return([200, {}, ["hi"]])
+    LogTail.any_instance.should_receive(:call).and_call_original
     get '/browser_logs'
   end
 
   it 'sends the request to the Rails when url is not /browser_logs' do
-    fake_rails.should_receive(:call).and_return([200, {}, ["hi"]])
+    fake_rails.should_receive(:call).and_call_original
     get '/'
   end
 end
