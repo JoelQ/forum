@@ -5,8 +5,16 @@ class LogTail
   end
 
   def call(env)
-    log = `tail -n 25  log/#{@environment}.log`
-    formatted_log = "<pre>#{log}</pre>"
     [200, {'Content-Type' => 'text/html'}, [formatted_log]]
+  end
+
+  private
+
+  def formatted_log
+    "<pre>#{log}</pre>"
+  end
+
+  def log
+    `tail -n 25 log/#{@environment}.log`
   end
 end

@@ -1,5 +1,4 @@
 class BrowserLogger
-
   def initialize(app)
     @builder = Rack::Builder.new do
       map '/browser_logs' do

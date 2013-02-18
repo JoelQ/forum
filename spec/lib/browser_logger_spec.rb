@@ -18,5 +18,4 @@ describe BrowserLogger do
     fake_rails.should_receive(:call).and_return([200, {}, ["hi"]])
     get '/'
   end
-
 end
