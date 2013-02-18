@@ -2,7 +2,7 @@ require 'spec_helper'
 
 feature 'Sign up' do
   scenario 'new user' do
-    visit '/'
+    visit root_path
     click_link 'Sign up'
     fill_in 'Email', with: 'me@example.com'
     fill_in 'Password', with: 'password'
@@ -25,7 +25,7 @@ feature 'Sign in' do
   end
 
   scenario 'new user' do
-    visit '/'
+    visit root_path
     click_link 'Sign in'
     fill_in 'Email', with: 'new_user@example.com'
     fill_in 'Password', with: 'new_password'
@@ -50,7 +50,7 @@ feature 'Greeting' do
   end
 
   scenario 'guest user' do
-    visit '/'
+    visit root_path
     page.should have_content 'Hello Anonymous'
   end
 end
